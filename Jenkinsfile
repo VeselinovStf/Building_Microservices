@@ -62,7 +62,7 @@ pipeline {
 
         stage("Run Anchore Tests") {
             steps {
-                  powerchell("Write-Output 'src/JustOrganize.TeamService' > anchore_images")
+                  powershell("powershell.exe Write-Output 'src/JustOrganize.TeamService' > anchore_images")
                   anchore name: 'anchore_images'            
                                
             }
