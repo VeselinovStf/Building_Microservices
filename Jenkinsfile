@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+        environment {
+        registry = "sonicsitebuilderdev/docker-hub"
+        registryCredential = 'DockerHub'
+    }
+
     stages {
         stage("Verify GitHub") {
             steps {
@@ -37,16 +42,22 @@ pipeline {
             }
         }
 
-        stage("Push Container") {
-            steps {
-                echo "Workspace is $WORKSPACE"
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub'){
-                        def image = docker.build('web-api:latest')
-                        image.push()
-                    }
-                }
+        stage('Building image') {
+            steps{
+              script {
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+              }
             }
+        }
+
+        stage('Deploy Image') {
+          steps{
+            script {
+              docker.withRegistry( '', registryCredential ) {
+                dockerImage.push()
+              }
+            }
+          }
         }
 
         stage("Run Anchore Tests") {
