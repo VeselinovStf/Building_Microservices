@@ -62,7 +62,7 @@ pipeline {
 
         stage("Run Anchore Tests") {
             steps {
-                anchore $registry:$BUILD_NUMBER"               
+                anchore name: $registry:$BUILD_NUMBER"               
             }
         }
 
