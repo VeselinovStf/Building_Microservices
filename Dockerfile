@@ -1,14 +1,14 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 
-WORKDIR /src/JustOrganize.TeamService
+WORKDIR /src
 
 COPY /src/JustOrganize.TeamService/*.csproj ./
 RUN dotnet restore
 
-COPY /src/JustOrganize.TeamService/. ./
+COPY /src/JustOrganize.TeamService ./
 RUN dotnet publish -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-WORKDIR /src/JustOrganize.TeamService
-COPY --from=build-env /src/JustOrganize.TeamService .
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS final
+WORKDIR /src
+COPY --from=build /src/out .
 ENTRYPOINT ["dotnet", "JustOrganize.TeamService.dll"]
