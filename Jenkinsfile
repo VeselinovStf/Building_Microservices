@@ -16,6 +16,8 @@ pipeline {
             steps {
                 
                 powershell('docker images -a')
+                powershell('docker build -t justorganizeapp .')
+                powershell('docker ps -a')
 
             }
 
