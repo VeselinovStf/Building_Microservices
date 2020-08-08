@@ -62,7 +62,9 @@ pipeline {
 
         stage("Run Anchore Tests") {
             steps {
-                anchore name: $registry:$BUILD_NUMBER"               
+                  
+                  anchore name: 'anchore_images'            
+                               
             }
         }
 
