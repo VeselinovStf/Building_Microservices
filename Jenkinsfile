@@ -62,7 +62,18 @@ pipeline {
 
         stage("Run Anchore Tests") {
             steps {
-                anchore 'anchore_images'
+                script {
+                    def imageLine = 'debian:latest'
+                    writeFile file: 'anchore_images', text: imageLine
+                    anchore name: 'anchore_images'
+                }
+               
+            }
+        }
+
+        stage('Remove Unused docker image') {
+            steps{
+              sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
      
