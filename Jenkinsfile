@@ -15,7 +15,7 @@ pipeline {
             
             steps {
                 
-                pwsh: '', script: 'docker images -a'
+                powershell('docker images -a')
 
             }
 
