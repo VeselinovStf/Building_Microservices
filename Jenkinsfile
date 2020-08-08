@@ -37,6 +37,11 @@ pipeline {
             }
         }
 
+        stage("Run Anchore Tests") {
+            steps {
+                anchore 'anchore_images'
+            }
+        }
      
 
     }
