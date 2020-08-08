@@ -5,7 +5,7 @@ pipeline {
 
         stage("Verify GitHub") {
 
-            step {
+            steps {
                 echo "$GIT_BRANCH"
             }
 
