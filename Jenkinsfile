@@ -62,12 +62,7 @@ pipeline {
 
         stage("Run Anchore Tests") {
             steps {
-                script {
-                    def imageLine = 'debian:latest'
-                    writeFile file: 'anchore_images', text: imageLine
-                    anchore name: 'anchore_images'
-                }
-               
+                anchore $registry:$BUILD_NUMBER"               
             }
         }
 
