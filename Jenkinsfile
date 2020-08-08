@@ -41,7 +41,7 @@ pipeline {
             steps {
                 echo "Workspace is $WORKSPACE"
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'DockerHub'){
+                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub'){
                         def image = docker.build('web-api:latest')
                         image.push()
                     }
