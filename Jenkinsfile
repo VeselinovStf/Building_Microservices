@@ -37,11 +37,7 @@ pipeline {
             }
         }
 
-        stage("Stop Dev App") {
-            steps {
-                powershell('docker-compose down')
-            }
-        }
+     
 
     }
 
