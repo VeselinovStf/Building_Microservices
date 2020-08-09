@@ -55,7 +55,7 @@ pipeline {
 
                 stage("Run Anchore"){
                     steps {
-                        sleep(time: 10, unit: 'SECONDS')
+                        sleep(time: 5, unit: 'SECONDS')
                        // pwsh(script: """
                         //        Write-Output "src/JustOrganize.TeamService" > anchore_images
                        //     """
@@ -67,7 +67,7 @@ pipeline {
 
                 stage("Run Trivy") {
                     steps {
-                        sleep(time: 10, unit: 'SECONDS')
+                        sleep(time: 5, unit: 'SECONDS')
 
                     }
                 }
