@@ -50,6 +50,30 @@ pipeline {
             }
         }
 
+        stage('Container Scanning'){
+            parallel{
+
+                stage("Run Anchore"){
+                    steps {
+                        pwsh(script: """
+                                Write-Output "src/JustOrganize.TeamService" > anchore_images
+                            """
+                        )
+                        anchore bailOnFail: false, bailOnPluginFail: false, name: 'anchore_images'
+                    }
+                        
+                }
+
+                stage("Run Trivy") {
+                    steps {
+                        sleep(time: 10, unit: 'SECONDS')
+
+                    }
+                }
+               
+            }
+        }
+
         stage('Deploy Image') {
           steps{
             script {
@@ -60,13 +84,7 @@ pipeline {
           }
         }
 
-        stage('Remove Unused docker image') {
-            steps{
-              sh "docker rmi $registry:$BUILD_NUMBER"
-            }
-        }
-     
-
+    
     }
 
 }
