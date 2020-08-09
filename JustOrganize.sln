@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustOrganize.TeamService", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustOrganize.TeamService.Tests", "test\JustOrganize.TeamService.Tests\JustOrganize.TeamService.Tests.csproj", "{E269D6B8-AAA5-40A2-8B8F-CB44D65F3DA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustOrganize.TeamService.IntegrationTests", "test\JustOrganize.TeamService.IntegrationTests\JustOrganize.TeamService.IntegrationTests.csproj", "{37070A9B-BB58-4969-9A86-A8A4F61EA72D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{E269D6B8-AAA5-40A2-8B8F-CB44D65F3DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E269D6B8-AAA5-40A2-8B8F-CB44D65F3DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E269D6B8-AAA5-40A2-8B8F-CB44D65F3DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37070A9B-BB58-4969-9A86-A8A4F61EA72D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37070A9B-BB58-4969-9A86-A8A4F61EA72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37070A9B-BB58-4969-9A86-A8A4F61EA72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37070A9B-BB58-4969-9A86-A8A4F61EA72D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E3E73B6C-1694-4D6D-9642-8DC928B380B9} = {F0D20BCA-D0BF-49B3-B531-BD29B5971D3C}
 		{E269D6B8-AAA5-40A2-8B8F-CB44D65F3DA3} = {035CB13B-7D8F-4581-9B1A-2CD725AFA688}
+		{37070A9B-BB58-4969-9A86-A8A4F61EA72D} = {035CB13B-7D8F-4581-9B1A-2CD725AFA688}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7410AC2D-3A4B-4048-B3DB-B97B7E981F8E}
