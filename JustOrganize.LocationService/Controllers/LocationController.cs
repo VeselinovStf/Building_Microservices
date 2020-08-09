@@ -22,6 +22,7 @@ namespace JustOrganize.LocationService.Controllers
         }
 
         [HttpGet]
+        [Route("{memberId}")]
         public async Task<IActionResult> RetrieveLocationHistrory(string memberId)
         {
             return Ok(await this._locationRepository.GetMemberLocationHistoryAsync(memberId));
