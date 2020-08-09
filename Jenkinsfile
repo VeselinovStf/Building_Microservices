@@ -60,14 +60,6 @@ pipeline {
           }
         }
 
-        stage("Run Anchore Tests") {
-            steps {
-                  powershell("powershell.exe Write-Output 'src/JustOrganize.TeamService' > anchore_images")
-                  anchore name: 'anchore_images'            
-                               
-            }
-        }
-
         stage('Remove Unused docker image') {
             steps{
               sh "docker rmi $registry:$BUILD_NUMBER"
