@@ -42,48 +42,48 @@ pipeline {
             }
         }
 
-        stage('Building image') {
-            steps{
-              script {
-                dockerImage = docker.build registry + ":$BUILD_NUMBER"
-              }
-            }
-        }
-
-        stage('Container Scanning'){
-            parallel{
-
-                stage("Run Anchore"){
-                    steps {
-                        sleep(time: 5, unit: 'SECONDS')
-                       // pwsh(script: """
-                        //        Write-Output "src/JustOrganize.TeamService" > anchore_images
-                       //     """
-                       // )
-                      //  anchore bailOnFail: false, bailOnPluginFail: false, name: 'anchore_images'
-                    }
-                        
-                }
-
-                stage("Run Trivy") {
-                    steps {
-                        sleep(time: 5, unit: 'SECONDS')
-
-                    }
-                }
-               
-            }
-        }
-
-        stage('Deploy Image') {
-          steps{
-            script {
-              docker.withRegistry( '', registryCredential ) {
-                dockerImage.push()
-              }
-            }
-          }
-        }
+        //stage('Building image') {
+        //    steps{
+        //      script {
+        //        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        //      }
+        //    }
+        //}
+        //
+        //stage('Container Scanning'){
+        //    parallel{
+        //
+        //        stage("Run Anchore"){
+        //            steps {
+        //                sleep(time: 5, unit: 'SECONDS')
+        //               // pwsh(script: """
+        //                //        Write-Output "src/JustOrganize.TeamService" > anchore_images
+        //               //     """
+        //               // )
+        //              //  anchore bailOnFail: false, bailOnPluginFail: false, name: 'anchore_images'
+        //            }
+        //                
+        //        }
+        //
+        //        stage("Run Trivy") {
+        //            steps {
+        //                sleep(time: 5, unit: 'SECONDS')
+        //
+        //            }
+        //        }
+        //       
+        //    }
+        //}
+        //
+        //stage('Deploy Image') {
+        //  steps{
+        //    script {
+        //      docker.withRegistry( '', registryCredential ) {
+        //        dockerImage.push()
+        //      }
+        //    }
+        //  }
+        //}
 
     
     }
