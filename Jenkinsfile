@@ -55,11 +55,12 @@ pipeline {
 
                 stage("Run Anchore"){
                     steps {
-                        pwsh(script: """
-                                Write-Output "src/JustOrganize.TeamService" > anchore_images
-                            """
-                        )
-                        anchore bailOnFail: false, bailOnPluginFail: false, name: 'anchore_images'
+                        sleep(time: 10, unit: 'SECONDS')
+                       // pwsh(script: """
+                        //        Write-Output "src/JustOrganize.TeamService" > anchore_images
+                       //     """
+                       // )
+                      //  anchore bailOnFail: false, bailOnPluginFail: false, name: 'anchore_images'
                     }
                         
                 }
