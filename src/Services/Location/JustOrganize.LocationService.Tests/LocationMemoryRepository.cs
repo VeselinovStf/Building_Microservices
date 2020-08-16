@@ -11,7 +11,7 @@ namespace JustOrganize.LocationService.Tests
         public const string MEMBER_ID_2 = "2c1201f4-ff58-4b1e-b7ac-5238916a5a0d";
     }
 
-    public class LocationMemoryRepository : MemoryLocationRepository
+    public class LocationMemoryRepository : InMemoryLocationRecordRepository
     {
         public LocationMemoryRepository() : base(CreateInitialFake())
         {

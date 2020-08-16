@@ -1,10 +1,10 @@
 using JustOrganize.LocationService.Controllers;
 using JustOrganize.LocationService.Models;
+using JustOrganize.LocationService.Persistance;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace JustOrganize.LocationService.Tests
@@ -12,83 +12,130 @@ namespace JustOrganize.LocationService.Tests
     public class LocationControllerTests
     {
         [Fact]
-        public async Task RetrievesLocationHistoryOfAMember_When_Correct_MemberId()
+        public void ShouldAdd()
         {
-            var memberId = MemoryRepositoryConst.MEMBER_ID_1;
+            ILocationRecordRepository repository = new InMemoryLocationRecordRepository();
+            LocationRecordController controller = new LocationRecordController(repository);
+            Guid memberGuid = Guid.NewGuid();
 
-            var locationController = new LocationController(new LocationMemoryRepository());
-
-            var memberLocationHistory = (LocationRecord)(
-                await locationController.RetrieveLocationHistrory(memberId) as ObjectResult).Value;
-
-            Assert.Equal(memberId, memberLocationHistory.MemberId.ToString());
-            Assert.Equal(123.3f, memberLocationHistory.Lattitude);
-            Assert.Equal(234.5f, memberLocationHistory.Longitude);
-            Assert.Equal(345.6f, memberLocationHistory.Altitude);
-            Assert.Equal((long)456.7, memberLocationHistory.Timestamp);
-        }
-
-        [Fact]
-        public async Task Retrieves_Null_LocationHistoryOfAMember_When_Incorrect_MemberId()
-        {
-            var memberId = "123";
-
-            var locationController = new LocationController(new LocationMemoryRepository());
-
-            var memberLocationHistory = (LocationRecord)(
-                await locationController.RetrieveLocationHistrory(memberId) as ObjectResult).Value;
-
-            Assert.Null(memberLocationHistory);
-
-        }
-
-        [Fact]
-        public async Task AddsLocationRecordToAMember()
-        {
-            var locationController = new LocationController(new LocationMemoryRepository());
-
-            var newRecordMemberId = Guid.NewGuid();
-            var newRecordId = Guid.NewGuid();
-            float lattitude = 1231.3f;
-            float longitude = 2341.5f;
-            float altitude = 3451.6f;
-            long timestamp = (long)4561.7;
-
-            var newRecord = new LocationRecord()
+            controller.AddLocation(memberGuid, new LocationRecord()
             {
-                Id = newRecordId,
-                Lattitude = lattitude,
-                Longitude = longitude,
-                Altitude = altitude,
-                Timestamp = timestamp,
-                MemberId = newRecordMemberId,
-            };
+                Id = Guid.NewGuid(),
+                MemberId = memberGuid,
+                Timestamp = 1
+            });
+            controller.AddLocation(memberGuid, new LocationRecord()
+            {
+                Id = Guid.NewGuid(),
+                MemberId = memberGuid,
+                Timestamp = 2
+            });
 
-            var locationRecords = (IEnumerable<LocationRecord>)(await locationController.GetAllLocationRecords() as ObjectResult).Value;
+            Assert.Equal(2, repository.AllForMember(memberGuid).Count());
+        }
 
-            List<LocationRecord> original = new List<LocationRecord>(locationRecords);
+        [Fact]
+        public void ShouldReturnEmtpyListForNewMember()
+        {
+            ILocationRecordRepository repository = new InMemoryLocationRecordRepository();
+            LocationRecordController controller = new LocationRecordController(repository);
+            Guid memberGuid = Guid.NewGuid();
 
-            var result = await locationController.AddMemberLocationRecord(newRecord);
+            ICollection<LocationRecord> locationRecords =
+                ((controller.GetLocationsForMember(memberGuid) as ObjectResult).Value as ICollection<LocationRecord>);
 
-            Assert.Equal(201, (result as ObjectResult).StatusCode);
+            Assert.Equal(0, locationRecords.Count());
+        }
 
-            var newestLocationRecords = (IEnumerable<LocationRecord>)(await locationController.GetAllLocationRecords() as ObjectResult).Value;
+        [Fact]
+        public void ShouldTrackAllLocationsForMember()
+        {
+            ILocationRecordRepository repository = new InMemoryLocationRecordRepository();
+            LocationRecordController controller = new LocationRecordController(repository);
+            Guid memberGuid = Guid.NewGuid();
 
-            List<LocationRecord> newLocations = new List<LocationRecord>(newestLocationRecords);
+            controller.AddLocation(memberGuid, new LocationRecord()
+            {
+                Id = Guid.NewGuid(),
+                Timestamp = 1,
+                MemberId = memberGuid,
+                Lattitude = 12.3f
+            });
+            controller.AddLocation(memberGuid, new LocationRecord()
+            {
+                Id = Guid.NewGuid(),
+                Timestamp = 2,
+                MemberId = memberGuid,
+                Lattitude = 23.4f
+            });
+            controller.AddLocation(Guid.NewGuid(), new LocationRecord()
+            {
+                Id = Guid.NewGuid(),
+                Timestamp = 3,
+                MemberId = Guid.NewGuid(),
+                Lattitude = 23.4f
+            });
 
-            Assert.Equal(original.Count + 1, newLocations.Count);
+            ICollection<LocationRecord> locationRecords =
+                ((controller.GetLocationsForMember(memberGuid) as ObjectResult).Value as ICollection<LocationRecord>);
 
-            var newAdded = newLocations
-                .FirstOrDefault(l => l.Id == newRecordId);
+            Assert.Equal(2, locationRecords.Count());
+        }
 
-            Assert.NotNull(newAdded);
+        [Fact]
+        public void ShouldTrackNullLatestForNewMember()
+        {
+            ILocationRecordRepository repository = new InMemoryLocationRecordRepository();
+            LocationRecordController controller = new LocationRecordController(repository);
 
-            Assert.Equal(lattitude, newAdded.Lattitude);
-            Assert.Equal(longitude, newAdded.Longitude);
-            Assert.Equal(altitude, newAdded.Altitude);
-            Assert.Equal(timestamp, newAdded.Timestamp);
-            Assert.Equal(newRecordMemberId, newAdded.MemberId);
+            Guid memberGuid = Guid.NewGuid();
 
+            LocationRecord latest = ((controller.GetLatestForMember(memberGuid) as ObjectResult).Value as LocationRecord);
+
+            Assert.Null(latest);
+        }
+
+        [Fact]
+        public void ShouldTrackLatestLocationsForMember()
+        {
+            ILocationRecordRepository repository = new InMemoryLocationRecordRepository();
+            LocationRecordController controller = new LocationRecordController(repository);
+            Guid memberGuid = Guid.NewGuid();
+
+            Guid latestId = Guid.NewGuid();
+            controller.AddLocation(memberGuid, new LocationRecord()
+            {
+                Id = Guid.NewGuid(),
+                Timestamp = 1,
+                MemberId = memberGuid,
+                Lattitude = 12.3f
+            });
+            controller.AddLocation(memberGuid, new LocationRecord()
+            {
+                Id = latestId,
+                Timestamp = 3,
+                MemberId = memberGuid,
+                Lattitude = 23.4f
+            });
+            controller.AddLocation(memberGuid, new LocationRecord()
+            {
+                Id = Guid.NewGuid(),
+                Timestamp = 2,
+                MemberId = memberGuid,
+                Lattitude = 23.4f
+            });
+            controller.AddLocation(Guid.NewGuid(), new LocationRecord()
+            {
+                Id = Guid.NewGuid(),
+                Timestamp = 4,
+                MemberId = Guid.NewGuid(),
+                Lattitude = 23.4f
+            });
+
+            LocationRecord latest = ((controller.GetLatestForMember(memberGuid) as ObjectResult).Value as LocationRecord);
+
+            Assert.NotNull(latest);
+            Assert.Equal(latestId, latest.Id);
         }
     }
 }

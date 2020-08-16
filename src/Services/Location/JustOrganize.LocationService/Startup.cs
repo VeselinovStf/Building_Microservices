@@ -13,7 +13,8 @@ namespace JustOrganize.LocationService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<ILocationRepository, MemoryLocationRepository>();
+            services.AddScoped<ILocationRecordRepository, InMemoryLocationRecordRepository>();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -23,6 +24,15 @@ namespace JustOrganize.LocationService
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Location Service API V1");
+            });
 
             app.UseRouting();
 
