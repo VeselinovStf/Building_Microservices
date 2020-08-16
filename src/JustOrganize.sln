@@ -5,17 +5,19 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A9C3E6F-2B77-4CB9-BF8F-6CAFC558D3B5}"
 	ProjectSection(SolutionItems) = preProject
-		.dockerignore = .dockerignore
 		.gitignore = .gitignore
-		docker-compose.yml = docker-compose.yml
-		Dockerfile = Dockerfile
-		.github\workflows\dotnet-core.yml = .github\workflows\dotnet-core.yml
-		Jenkinsfile = Jenkinsfile
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F0D20BCA-D0BF-49B3-B531-BD29B5971D3C}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+		.github\workflows\dotnet-core.yml = .github\workflows\dotnet-core.yml
+		Jenkinsfile = Jenkinsfile
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{62A9DB95-6CF8-4393-9312-CF0FFE3190F0}"
 EndProject
