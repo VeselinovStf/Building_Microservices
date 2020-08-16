@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A9C3E6F-2B77-4CB9-BF8F-6CAFC558D3B5}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+		.github\workflows\dotnet-core.yml = .github\workflows\dotnet-core.yml
+		Jenkinsfile = Jenkinsfile
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F0D20BCA-D0BF-49B3-B531-BD29B5971D3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{62A9DB95-6CF8-4393-9312-CF0FFE3190F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Location", "Location", "{E2A08D30-7CF3-4C07-AA13-210E2819B6F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Team", "Team", "{3AAD2828-B8FA-4DC6-AA3F-3453CBDF9533}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustOrganize.LocationService", "Services\Location\JustOrganize.LocationService\JustOrganize.LocationService.csproj", "{4D046766-93A8-4FB3-A14A-80056287BF71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustOrganize.LocationService.IntegrationTests", "Services\Location\JustOrganize.LocationService.IntegrationTests\JustOrganize.LocationService.IntegrationTests.csproj", "{8B2078A7-4CDC-4469-BBCD-414EBC2E52D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustOrganize.LocationService.Tests", "Services\Location\JustOrganize.LocationService.Tests\JustOrganize.LocationService.Tests.csproj", "{0F3CF51E-AAA8-4E45-A6E1-2AA1AB64F08A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustOrganize.TeamService", "Services\Team\JustOrganize.TeamService\JustOrganize.TeamService.csproj", "{61F149F4-2842-46B9-BB4B-A724854906C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustOrganize.TeamService.IntegrationTests", "Services\Team\JustOrganize.TeamService.IntegrationTests\JustOrganize.TeamService.IntegrationTests.csproj", "{C5D6655B-1989-45DA-B7B2-35E99AF8E094}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustOrganize.TeamService.Tests", "Services\Team\JustOrganize.TeamService.Tests\JustOrganize.TeamService.Tests.csproj", "{C4CD88E7-DD71-47E8-8DD6-62390332720A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D046766-93A8-4FB3-A14A-80056287BF71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D046766-93A8-4FB3-A14A-80056287BF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D046766-93A8-4FB3-A14A-80056287BF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D046766-93A8-4FB3-A14A-80056287BF71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B2078A7-4CDC-4469-BBCD-414EBC2E52D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B2078A7-4CDC-4469-BBCD-414EBC2E52D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B2078A7-4CDC-4469-BBCD-414EBC2E52D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B2078A7-4CDC-4469-BBCD-414EBC2E52D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F3CF51E-AAA8-4E45-A6E1-2AA1AB64F08A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F3CF51E-AAA8-4E45-A6E1-2AA1AB64F08A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F3CF51E-AAA8-4E45-A6E1-2AA1AB64F08A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F3CF51E-AAA8-4E45-A6E1-2AA1AB64F08A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F149F4-2842-46B9-BB4B-A724854906C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F149F4-2842-46B9-BB4B-A724854906C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F149F4-2842-46B9-BB4B-A724854906C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F149F4-2842-46B9-BB4B-A724854906C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5D6655B-1989-45DA-B7B2-35E99AF8E094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D6655B-1989-45DA-B7B2-35E99AF8E094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D6655B-1989-45DA-B7B2-35E99AF8E094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D6655B-1989-45DA-B7B2-35E99AF8E094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4CD88E7-DD71-47E8-8DD6-62390332720A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4CD88E7-DD71-47E8-8DD6-62390332720A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4CD88E7-DD71-47E8-8DD6-62390332720A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4CD88E7-DD71-47E8-8DD6-62390332720A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{62A9DB95-6CF8-4393-9312-CF0FFE3190F0} = {F0D20BCA-D0BF-49B3-B531-BD29B5971D3C}
+		{E2A08D30-7CF3-4C07-AA13-210E2819B6F5} = {62A9DB95-6CF8-4393-9312-CF0FFE3190F0}
+		{3AAD2828-B8FA-4DC6-AA3F-3453CBDF9533} = {62A9DB95-6CF8-4393-9312-CF0FFE3190F0}
+		{4D046766-93A8-4FB3-A14A-80056287BF71} = {E2A08D30-7CF3-4C07-AA13-210E2819B6F5}
+		{8B2078A7-4CDC-4469-BBCD-414EBC2E52D1} = {E2A08D30-7CF3-4C07-AA13-210E2819B6F5}
+		{0F3CF51E-AAA8-4E45-A6E1-2AA1AB64F08A} = {E2A08D30-7CF3-4C07-AA13-210E2819B6F5}
+		{61F149F4-2842-46B9-BB4B-A724854906C6} = {3AAD2828-B8FA-4DC6-AA3F-3453CBDF9533}
+		{C5D6655B-1989-45DA-B7B2-35E99AF8E094} = {3AAD2828-B8FA-4DC6-AA3F-3453CBDF9533}
+		{C4CD88E7-DD71-47E8-8DD6-62390332720A} = {3AAD2828-B8FA-4DC6-AA3F-3453CBDF9533}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7410AC2D-3A4B-4048-B3DB-B97B7E981F8E}
+	EndGlobalSection
+EndGlobal
