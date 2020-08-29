@@ -21,9 +21,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{62A9DB95-6CF8-4393-9312-CF0FFE3190F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Location", "Location", "{E2A08D30-7CF3-4C07-AA13-210E2819B6F5}"
-	ProjectSection(SolutionItems) = preProject
-		Dockerfile = Dockerfile
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Team", "Team", "{3AAD2828-B8FA-4DC6-AA3F-3453CBDF9533}"
 EndProject

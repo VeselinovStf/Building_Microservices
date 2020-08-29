@@ -1,5 +1,7 @@
 ﻿using JustOrganize.TeamService.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JustOrganize.TeamService.Persistence
 {
@@ -24,6 +26,11 @@ namespace JustOrganize.TeamService.Persistence
         public void AddTeam(Team team)
         {
             teams.Add(team);
+        }
+
+        public Team GetTeam(Guid teamId)
+        {
+            return teams.FirstOrDefault(t => t.Id == teamId);
         }
 
         public IEnumerable<Team> GetTeams()

@@ -15,6 +15,7 @@ namespace JustOrganize.TeamService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
                 });
     }
 }
